@@ -9,7 +9,6 @@ function WalletInteraction() {
     amountLeftInWallet,
     isTheWalletConnected,
     connectWithInjectedProvider,
-    disconnectWallet,
     retrieveBal,
   } = useBlockchainConnection();
 
@@ -28,7 +27,6 @@ function WalletInteraction() {
         <div>
           <p>Connected Account: {accountConnected}</p>
           <p>Current Network: {currentNetworkActive}</p>
-          <button onClick={disconnectWallet}>Disconnect Wallet</button>
         </div>
       ) : (
         <button onClick={connectWithInjectedProvider}>Connect Wallet</button>

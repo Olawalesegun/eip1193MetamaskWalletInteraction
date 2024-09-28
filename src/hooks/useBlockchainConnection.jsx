@@ -32,8 +32,6 @@ export function useBlockchainConnection() {
       detectedETHProvider.on('accountsChanged', (newAcct) => {
         if(newAcct.length > 0) {
           setAccountConnected(newAcct[0]);
-        } else {
-          disconnectWallet();
         }
       });
 
@@ -46,13 +44,6 @@ export function useBlockchainConnection() {
       console.error("You don't have Metamask");
     }
   
-  }, [disconnectWallet]);
-
-  const disconnectWallet = useCallback(() => {
-    setBlockChProvider(null);
-    setAccountConnected(null);
-    setCurrentNetworkActive(null);
-    setIsTheWalletConnected(false);
   }, []);
 
   const retrieveBal = useCallback(async (address) => {
@@ -69,7 +60,6 @@ export function useBlockchainConnection() {
     amountLeftInWallet,
     isTheWalletConnected,
     connectWithInjectedProvider,
-    disconnectWallet,
     retrieveBal,
   };
 }
