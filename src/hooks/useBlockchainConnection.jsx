@@ -3,6 +3,7 @@ import detectEthereumProvider from '@metamask/detect-provider';
 import {ethers} from 'ethers';
 
 export function useBlockchainConnection() {
+
   const [blockChProvider, setBlockChProvider] = useState();
   const [currentNetworkActive, setCurrentNetworkActive] = useState("");
   const [amountLeftInWallet, setAmountLeftInWallet] = useState("");
@@ -10,9 +11,11 @@ export function useBlockchainConnection() {
   const [accountConnected, setAccountConnected] = useState("");
 
   const connectWithInjectedProvider = useCallback(async () => {
+ 
     const detectedETHProvider = await detectEthereumProvider();
     if(detectedETHProvider != null && detectedETHProvider != undefined) {
-      const createdProviderInstance = new ethers.BrowserProvider(detectEthereumProvider);
+      console.log(detectedETHProvider)
+      const createdProviderInstance = new ethers.BrowserProvider(detectedETHProvider);
       setBlockChProvider(createdProviderInstance);
 
       try{
